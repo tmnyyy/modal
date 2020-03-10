@@ -1,0 +1,11 @@
+<mat-card [ngClass]="{'active': isOdd}">
+  <mat-card-header (click)="toggleFavorite()">
+    <mat-icon matListIcon *ngIf="product.isFavorite">star</mat-icon>
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>{{product.price | currency: 'USD'}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="product.img">
+  <mat-card-actions>
+    <button mat-button (click)="addToCart()">Add to card</button>
+  </mat-card-actions>
+</mat-card>

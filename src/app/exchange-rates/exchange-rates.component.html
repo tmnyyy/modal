@@ -1,0 +1,11 @@
+<div *courseExchangeRates="let rate from rates autoplay 'off' duration 2000; controller as ctrl"
+     (mouseenter)="cPrev.show(); cNext.show()"
+     (mouseleave)="cPrev.hide(); cNext.hide()">
+  <button mat-button (click)="ctrl.prev()" courseHidden #cPrev="hiddenControl">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <span>{{rate.value | currency: rate.currency: 'symbol-narrow' }}</span>
+  <button mat-button (click)="ctrl.next()" courseHidden #cNext="hiddenControl">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

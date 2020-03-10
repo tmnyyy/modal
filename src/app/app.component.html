@@ -1,0 +1,24 @@
+<course-header [t]="title" [d]="drawer"></course-header>
+<course-sidebar (setSidenavControl)="setSidenav($event)">
+  <ng-template #sampleContent let-title let-description="subTitle">
+    <mat-form-field appearance="fill">
+      <mat-label >Input</mat-label>
+      <input matInput placeholder="Input" #searchEl >
+    </mat-form-field>
+    <mat-checkbox color="primary" (change)="toggleOnlyFavorites($event)">Show favorite!</mat-checkbox>
+    <mat-grid-list *ngIf="products$ | async as products; else loader" cols="4" rowHeight="500">
+      <mat-grid-tile *ngFor="let product of products | productsFilter: searchEl.value: onlyFavorites ; isOdd as isOdd">
+        <course-product-card [product]="product" [isOdd]="isOdd">
+        </course-product-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
+</course-sidebar>
+
+<ng-template #loader>
+  <div class="loader-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<course-modal></course-modal>
